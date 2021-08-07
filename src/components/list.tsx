@@ -11,7 +11,7 @@ export default class Component
 	extends React.Component<{}, ListState>
 	implements ListItemObserver
 {
-	constructor(props:{}) {
+	constructor(props: {}) {
 		super(props);
 
 		this.state = {
@@ -64,13 +64,16 @@ export default class Component
 										<input
 											type="checkbox"
 											// setTimeout to slow the action as to see the tick
-											onClick={() => setTimeout(() => { TodoList.changeListItemState(index)}, 200)}
+											onClick={() =>
+												setTimeout(() => {
+													TodoList.changeListItemState(index);
+												}, 200)
+											}
 										/>
 									</label>
 								</span>
 							</li>
 						);
-						
 					return null;
 				})}
 			</ul>
