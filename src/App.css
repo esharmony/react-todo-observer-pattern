@@ -11,14 +11,15 @@ body {
 }
 
 #root {
-  width:50%;
-  padding:100px;
+  width:100%;
+  padding:25px;
+  max-width: 900px;
 }
 
 ul#list {
   list-style: none;
   text-transform: capitalize;
-
+  margin-top: 5px;
 }
 
 #list li {
@@ -68,13 +69,11 @@ div#navContainer {
 }
 
 ul#navigation {
-  margin-bottom: 20px;
   width:100%;
 }
 
 #navigation li {
   display: inline;
-
   margin-right: 10px;
 }
 
@@ -84,6 +83,8 @@ ul#navigation {
   color: white;
   text-decoration: none;
   padding: 15px;
+  float:left;
+  margin-right: 10px;
 }
 
 #navigation li a.selected {

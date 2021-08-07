@@ -66,13 +66,11 @@ export default class Component
                 {this.state.isVisible &&
                 this.state.todoListState.ListSetting === ItemState.Todo ? (
                     <p>
-                        You have completed <strong>{this.lengthOfDone()}</strong> tasks!
+                        {this.lengthOfDone()} completed  tasks!
                     </p>
                 ) : (
                     this.state.isVisible && (
-                        <p>
-                            You have <strong>{this.lengthOfTodo()}</strong> tasks to do!
-                        </p>
+                        <p><strong>{this.lengthOfTodo()}</strong> tasks to do!</p>
                     )
                 )}
                 {this.state.isVisible ? (
