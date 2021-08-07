@@ -3,18 +3,18 @@ import Navigation from './navigation';
 import TodoInfo from './todoInfo';
 
 const NavigationContainer: React.FC = () => {
-	useEffect(() => {
-		console.log('navigation container updating');
-	});
+  useEffect(() => {
+    console.log('navigation container updating');
+  });
 
-	return (
-		<>
-			<div id="navContainer">
-				<Navigation />
-				<TodoInfo />
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div id="navContainer">
+        <Navigation />
+        <TodoInfo />
+      </div>
+    </>
+  );
 };
 
 export default NavigationContainer;
