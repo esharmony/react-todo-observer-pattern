@@ -70,6 +70,7 @@ export default class Component
 								</span>
 							</li>
 						);
+						
 					return null;
 				})}
 			</ul>
