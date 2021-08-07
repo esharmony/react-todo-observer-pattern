@@ -6,8 +6,8 @@ export default class Component
 	extends React.Component<{}, TodoListState>
 	implements ListItemObserver
 {
-	constructor() {
-		super({});
+	constructor(props:{}) {
+		super(props);
 
 		this.state = {
 			ListItems: [],
@@ -15,12 +15,17 @@ export default class Component
 		};
 	}
 
+	componentDidUpdate(){
+        console.log('navigation updating')
+    }
+
     componentDidMount(){
         TodoList.registerObserver(this);
     }
 
 	updated = (state: TodoListState) => {
-        this.setState(state);
+		if(this.state.ListSetting !== state.ListSetting)
+        	this.setState(state);
     };
 
 	handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, state: ItemState) => {

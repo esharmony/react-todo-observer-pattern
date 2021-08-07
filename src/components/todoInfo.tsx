@@ -2,17 +2,29 @@ import React from 'react';
 import ListItemObserver from '../Observers/Abstractions/ListObserver';
 import TodoList, { ItemState, TodoListState } from '../Subjects/TodoList';
 
+interface TodoInfoState {
+	todoListState: TodoListState;
+	isVisible: boolean;
+}
+
 export default class Component
-	extends React.Component<{}, TodoListState>
+	extends React.Component<{}, TodoInfoState>
 	implements ListItemObserver
 {
-	constructor() {
-		super({});
+	constructor(props: {}) {
+		super(props);
 
 		this.state = {
-			ListItems: [],
-			ListSetting: ItemState.Todo,
+			todoListState: {
+				ListItems: [],
+				ListSetting: ItemState.Todo,
+			},
+			isVisible: true,
 		};
+	}
+
+	componentDidUpdate() {
+		console.log('info updating');
 	}
 
 	componentDidMount() {
@@ -20,31 +32,57 @@ export default class Component
 	}
 
 	updated = (state: TodoListState): void => {
-		this.setState(state);
+		this.setState({ todoListState: state });
 	};
 
-	lengthOfTodo = ():number => {
-		return this.state.ListItems.filter((item) => item.State === ItemState.Todo)
-			.length;
+	lengthOfTodo = (): number => {
+		return this.state.todoListState.ListItems.filter(
+			(item) => item.State === ItemState.Todo
+		).length;
 	};
 
-	lengthOfDone = ():number => {
-		return this.state.ListItems.filter((item) => item.State === ItemState.Done)
-			.length;
+	lengthOfDone = (): number => {
+		return this.state.todoListState.ListItems.filter(
+			(item) => item.State === ItemState.Done
+		).length;
+	};
+
+	handleClose = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+		this.setState({ isVisible: false });
+		TodoList.removeObserver(this);
+		e.preventDefault();
+	};
+
+	handleOpen = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+		this.setState({ isVisible: true });
+		TodoList.registerObserver(this);
+		e.preventDefault();
 	};
 
 	render() {
-		if (this.state.IsLoading) return null;
+		if (this.state.todoListState.IsLoading) return null;
 		return (
 			<div id="todoListInfo">
-				{this.state.ListSetting === ItemState.Todo ? (
+				{this.state.isVisible &&
+				this.state.todoListState.ListSetting === ItemState.Todo ? (
 					<p>
-						You have completed <strong>{this.lengthOfDone()}</strong>
+						You have completed <strong>{this.lengthOfDone()}</strong> tasks!
 					</p>
 				) : (
-					<p>
-						You have <strong>{this.lengthOfTodo()}</strong> still to do!
-					</p>
+					this.state.isVisible && (
+						<p>
+							You have <strong>{this.lengthOfTodo()}</strong> tasks to do!
+						</p>
+					)
+				)}
+				{this.state.isVisible ? (
+					<a href=":" onClick={(e) => this.handleClose(e)}>
+						Close
+					</a>
+				) : (
+					<a href=":" onClick={(e) => this.handleOpen(e)}>
+						Open
+					</a>
 				)}
 			</div>
 		);

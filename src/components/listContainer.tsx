@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import List from './list';
 import ListControl from '../components/listControl';
-import NavigationContainer from './NavigationContainer';
+import NavigationContainer from './navigationContainer';
 
-export default class Component extends React.Component {
-    componentDidUpdate(){
-        console.log('container updating')
-    }
-	render() {
-		return (
-			<>
-				<NavigationContainer />
-				<List />
-				<ListControl />
-			</>
-		);
-	}
-}
+const ListContainer: React.FC = () => {
+	useEffect(() => {
+		console.log('list container updating');
+	});
+
+	return (
+		<>
+			<NavigationContainer />
+			<List />
+			<ListControl />
+		</>
+	);
+};
+
+export default ListContainer;

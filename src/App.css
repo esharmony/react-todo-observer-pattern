@@ -93,5 +93,16 @@ ul#navigation {
 
 #todoListInfo {
   color:white;
-  width:20%;
+  width:50%;
+  display: flex;
+  justify-content:flex-end;
+}
+
+div#todoListInfo p  {
+  margin-right: 15px;
+}
+
+div#todoListInfo a {
+  color: orange;
+  text-decoration: none;
 }

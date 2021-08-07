@@ -71,7 +71,6 @@ class TodoList implements Subject {
     };
 
     notifyObservers = ():void => {
-        console.log(this.TodoListState);
         this.observers.forEach(observer => observer.updated(this.TodoListState))
     };
 

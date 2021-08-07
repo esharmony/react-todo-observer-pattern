@@ -11,8 +11,8 @@ export default class Component
 	extends React.Component<{}, ListState>
 	implements ListItemObserver
 {
-	constructor() {
-		super({});
+	constructor(props:{}) {
+		super(props);
 
 		this.state = {
 			todoListState: { ListItems: [], ListSetting: ItemState.Todo },
@@ -22,7 +22,7 @@ export default class Component
 	componentDidMount() {
 		TodoList.registerObserver(this);
 		TodoList.setIsLoading(true);
-		// mock initial load
+		// mocking initial load of items
 		setTimeout(() => {
 			TodoList.setState({
 				IsLoading: false,

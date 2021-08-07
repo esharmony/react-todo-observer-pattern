@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TodoList, { ItemState } from '../Subjects/TodoList';
 
 const ListControl: React.FC = () => {
 	const [title, setTitle] = useState<string>('');
 
+	useEffect(() => {
+		console.log('list control updating');
+	});
+
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		if (title) {
-			TodoList.addListItem({ Title: title, State: ItemState.Todo});
-            setTitle('');
+			TodoList.addListItem({ Title: title, State: ItemState.Todo });
+			setTitle('');
 		} else {
 			alert('Add something');
 		}
@@ -16,7 +20,12 @@ const ListControl: React.FC = () => {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Add item todo" />
+			<input
+				type="text"
+				value={title}
+				onChange={(e) => setTitle(e.target.value)}
+				placeholder="Add item todo"
+			/>
 			<input type="submit" value="Add todo" />
 		</form>
 	);
