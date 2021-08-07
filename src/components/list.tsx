@@ -58,7 +58,8 @@ export default class Component
 								{listItem.Title}
 								<span>
 									<label>
-										{this.state.todoListState.ListSetting === ItemState.Todo
+										{this.state.todoListState
+											.ListSetting === ItemState.Todo
 											? 'Done:'
 											: 'Undo:'}
 										<input
@@ -66,15 +67,16 @@ export default class Component
 											// setTimeout to slow the action as to see the tick
 											onClick={() =>
 												setTimeout(() => {
-													TodoList.changeListItemState(index);
+													TodoList.changeListItemState(
+														index
+													);
 												}, 200)
 											}
 										/>
 									</label>
 								</span>
 							</li>
-						)
-						
+						);
 					return null;
 				})}
 			</ul>
