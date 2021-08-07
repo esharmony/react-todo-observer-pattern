@@ -4,17 +4,17 @@ import ListControl from '../components/listControl';
 import NavigationContainer from './navigationContainer';
 
 const ListContainer: React.FC = () => {
-	useEffect(() => {
-		console.log('list container updating');
-	});
+  useEffect(() => {
+    console.log('list container updating');
+  });
 
-	return (
-		<>
-			<NavigationContainer />
-			<List />
-			<ListControl />
-		</>
-	);
+  return (
+    <>
+      <NavigationContainer />
+      <List />
+      <ListControl />
+    </>
+  );
 };
 
 export default ListContainer;
