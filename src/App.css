@@ -107,3 +107,10 @@ div#todoListInfo a {
   color: orange;
   text-decoration: none;
 }
+
+#asyncOption {
+  clear:left;
+  width: 100%;
+  display: block;
+  margin-top:10px
+}
